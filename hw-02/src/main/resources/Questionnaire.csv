@@ -1,0 +1,6 @@
+question;options;answer
+Does java support operator overloading?;Yes|No;No
+Does java support the goto statement?;Yes|No;No
+Does java support call by value?;Yes|No;Yes
+Does java support call by reference?;Yes|No;No
+Does java support structures and unions?;Yes|No;No
