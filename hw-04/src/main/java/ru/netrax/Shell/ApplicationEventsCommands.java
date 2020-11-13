@@ -1,6 +1,5 @@
 package ru.netrax.Shell;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
