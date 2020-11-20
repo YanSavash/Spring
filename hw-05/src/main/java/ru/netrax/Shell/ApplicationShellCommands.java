@@ -22,7 +22,7 @@ public class ApplicationShellCommands {
     }
 
     @ShellMethod(value = "Add author", key = {"add_author", "aa"})
-    public void createGenre(@ShellOption("--id") long id,
+    public void createAuthor(@ShellOption("--id") long id,
                             @ShellOption("--firstName") String firstName,
                             @ShellOption("--lastName") String lastName) {
         bookService.addAuthor(new Author(id, firstName, lastName));
