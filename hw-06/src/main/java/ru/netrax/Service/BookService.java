@@ -39,7 +39,7 @@ public interface BookService {
 
     void deleteBook(long id);
 
-    void updateComment(Comment comment);
+    void updateComment(long id, String comment);
 
     void deleteComment(long id);
 }

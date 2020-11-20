@@ -51,16 +51,16 @@ public class BookRepositoryJpaImplTest {
     @DisplayName("проверка добавления книг")
     @Test
     void checkInsertBook() {
-        authorRepositoryJpa.insert(wrongAuthor);
-        genreRepositoryJpa.insert(wrongGenre);
-        bookRepositoryJpa.insert(wrongBook);
+        authorRepositoryJpa.save(wrongAuthor);
+        genreRepositoryJpa.save(wrongGenre);
+        bookRepositoryJpa.save(wrongBook);
         assertThat(bookRepositoryJpa.getAllBook().contains(wrongBook));
     }
 
     @DisplayName("проверка получения книг по id")
     @Test
     void checkById() {
-        assertThat(bookRepositoryJpa.getById(1).orElseThrow())
+        assertThat(bookRepositoryJpa.getById(1))
                 .isEqualTo(rightBook);
     }
 

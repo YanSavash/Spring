@@ -4,7 +4,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.netrax.Model.Book;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,21 +21,14 @@ public class BookRepositoryJpaImpl implements BookRepositoryJpa {
         return em.createQuery("Select b from Book b", Book.class).getResultList();
     }
 
-    @Transactional
     @Override
-    public Optional<Book> getById(long id) {
-        TypedQuery<Book> query = em.createQuery("Select b from Book b where b.id = :id", Book.class);
-        query.setParameter("id", id);
-        try {
-            return Optional.ofNullable(query.getSingleResult());
-        } catch (NoResultException e) {
-            return Optional.empty();
-        }
+    public Book getById(long id) {
+        return em.find(Book.class, id);
     }
 
     @Transactional
     @Override
-    public Book insert(Book book) {
+    public Book save(Book book) {
         if (book.getId() <= 0) {
             em.persist(book);
             return book;
@@ -45,22 +39,8 @@ public class BookRepositoryJpaImpl implements BookRepositoryJpa {
 
     @Transactional
     @Override
-    public void update(long id, String title) {
-        Query query = em.createQuery("update Book b " +
-                "set b.title = :title " +
-                "where b.id = :id");
-        query.setParameter("title", title);
-        query.setParameter("id", id);
-        query.executeUpdate();
-    }
-
-    @Transactional
-    @Override
     public void delete(long id) {
-        Query query = em.createQuery("delete " +
-                "from Book b " +
-                "where b.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+        Optional<Book> book = Optional.ofNullable(em.find(Book.class, id));
+        book.ifPresent(e -> em.remove(e));
     }
 }

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import ru.netrax.Model.Author;
 import ru.netrax.Repository.AuthorRepositoryJpaImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,14 +39,14 @@ public class AuthorRepositoryJpaImplTest {
     @DisplayName("проверка добавления автора")
     @Test
     void checkInsertAuthor() {
-        authorRepositoryJpa.insert(wrongAuthor);
+        authorRepositoryJpa.save(wrongAuthor);
         assertThat(authorRepositoryJpa.getList().contains(wrongAuthor));
     }
 
     @DisplayName("проверка получения автора по id")
     @Test
     void checkById() {
-        assertThat(authorRepositoryJpa.getById(1).orElseThrow())
+        assertThat(authorRepositoryJpa.getById(1))
                 .isEqualTo(rightAuthor);
     }
 }

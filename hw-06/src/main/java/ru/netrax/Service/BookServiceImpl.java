@@ -12,7 +12,6 @@ import ru.netrax.Repository.CommentRepositoryJpa;
 import ru.netrax.Repository.GenreRepositoryJpa;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -45,12 +44,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addGenre(Genre genre) {
-        genreRepositoryJpa.insert(genre);
+        genreRepositoryJpa.save(genre);
     }
 
     @Override
     public void addAuthor(Author author) {
-        authorRepositoryJpa.insert(author);
+        authorRepositoryJpa.save(author);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class BookServiceImpl implements BookService {
         book.setTitle(title);
         book.setAuthor(author);
         book.setGenre(genre);
-        bookRepositoryJpa.insert(book);
+        bookRepositoryJpa.save(book);
     }
 
     @Override
@@ -68,9 +67,9 @@ public class BookServiceImpl implements BookService {
         book.setTitle(title);
         book.setAuthor(author);
         book.setGenre(genre);
-        Book insertBook = bookRepositoryJpa.insert(book);
+        Book insertBook = bookRepositoryJpa.save(book);
 
-        commentRepositoryJpa.insert(new Comment(commentId, comment, insertBook));
+        commentRepositoryJpa.save(new Comment(commentId, comment, insertBook));
     }
 
     @Override
@@ -79,36 +78,34 @@ public class BookServiceImpl implements BookService {
         Comment comment1 = new Comment();
         comment1.setBook(book);
         comment1.setComment(comment);
-        commentRepositoryJpa.insert(comment1);
+        commentRepositoryJpa.save(comment1);
     }
 
     @Override
     public Book getBook(long id) {
-        Optional<Book> optionalBook = bookRepositoryJpa.getById(id);
-        return optionalBook.orElseThrow();
+        return bookRepositoryJpa.getById(id);
     }
 
     @Override
     public Comment getComment(long id) {
-        Optional<Comment> optionalComment = commentRepositoryJpa.getById(id);
-        return optionalComment.orElseThrow();
+        return commentRepositoryJpa.getById(id);
     }
 
     @Override
     public Author getAuthor(long id) {
-        Optional<Author> optionalAuthor = authorRepositoryJpa.getById(id);
-        return optionalAuthor.orElseThrow();
+        return authorRepositoryJpa.getById(id);
     }
 
     @Override
     public Genre getGenre(long id) {
-        Optional<Genre> optionalGenre = genreRepositoryJpa.getById(id);
-        return optionalGenre.orElseThrow();
+        return genreRepositoryJpa.getById(id);
     }
 
     @Override
     public void updateBook(long id, String title) {
-        bookRepositoryJpa.update(id, title);
+        Book book = bookRepositoryJpa.getById(id);
+        book.setTitle(title);
+        bookRepositoryJpa.save(book);
     }
 
     @Override
@@ -117,8 +114,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateComment(Comment comment) {
-        commentRepositoryJpa.update(comment);
+    public void updateComment(long id, String comment) {
+        Comment commentRepositoryJpaById = commentRepositoryJpa.getById(id);
+        commentRepositoryJpaById.setComment(comment);
+        commentRepositoryJpa.save(commentRepositoryJpaById);
     }
 
     @Override

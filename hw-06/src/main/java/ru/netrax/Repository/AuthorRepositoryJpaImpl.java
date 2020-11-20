@@ -5,11 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.netrax.Model.Author;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
@@ -22,21 +19,14 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
         return em.createQuery("Select a from Author a", Author.class).getResultList();
     }
 
-    @Transactional
     @Override
-    public Optional<Author> getById(long id) {
-        TypedQuery<Author> query = em.createQuery("Select a from Author a where a.id = :id", Author.class);
-        query.setParameter("id", id);
-        try {
-            return Optional.ofNullable(query.getSingleResult());
-        } catch (NoResultException e) {
-            return Optional.empty();
-        }
+    public Author getById(long id) {
+        return em.find(Author.class, id);
     }
 
     @Transactional
     @Override
-    public Author insert(Author author) {
+    public Author save(Author author) {
         if (author.getId() <= 0) {
             em.persist(author);
             return author;

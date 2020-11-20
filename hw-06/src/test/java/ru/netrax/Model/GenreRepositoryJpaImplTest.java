@@ -39,14 +39,14 @@ public class GenreRepositoryJpaImplTest {
     @DisplayName("проверка добавления жанров")
     @Test
     void checkInsertBook() {
-        genreRepositoryJpa.insert(wrongGenre);
+        genreRepositoryJpa.save(wrongGenre);
         assertThat(genreRepositoryJpa.getAllGenre().contains(wrongGenre));
     }
 
     @DisplayName("проверка получения жанра по id")
     @Test
     void checkById() {
-        assertThat(genreRepositoryJpa.getById(1).orElseThrow())
+        assertThat(genreRepositoryJpa.getById(1))
                 .isEqualTo(rightGenre);
     }
 }

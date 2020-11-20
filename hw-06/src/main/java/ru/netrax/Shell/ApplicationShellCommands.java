@@ -51,10 +51,21 @@ public class ApplicationShellCommands {
         return bookService.getAllBooks().toString();
     }
 
+    @ShellMethod(value = "List all comments from store", key = {"list_comments", "lc"})
+    public String printComments() {
+        return bookService.getAllComments().toString();
+    }
+
     @ShellMethod(value = "Update book", key = {"update", "up"})
     public void updateBook(@ShellOption(value = "--id") long id,
                            @ShellOption(value = "--title") String title) {
         bookService.updateBook(id, title);
+    }
+
+    @ShellMethod(value = "Update comment", key = {"update com", "upc"})
+    public void updateComment(@ShellOption(value = "--id") long id,
+                           @ShellOption(value = "--comment") String comment) {
+        bookService.updateComment(id, comment);
     }
 
     @ShellMethod(value = "Get book by Id", key = {"book", "b"})

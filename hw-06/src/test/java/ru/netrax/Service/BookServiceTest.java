@@ -60,8 +60,8 @@ public class BookServiceTest {
     @DisplayName("проверка добавления книг")
     @Test
     void checkInsertBook() {
-        authorRepositoryJpa.insert(wrongAuthor);
-        genreRepositoryJpa.insert(wrongGenre);
+        authorRepositoryJpa.save(wrongAuthor);
+        genreRepositoryJpa.save(wrongGenre);
         bookService.insertBook(wrongBook.getTitle(), wrongBook.getAuthor(), wrongBook.getGenre());
         assertThat(bookService.getAllBooks().contains(wrongBook));
     }
@@ -76,7 +76,7 @@ public class BookServiceTest {
     @DisplayName("проверка удаления книг")
     @Test
     void checkDeleteAuthor() {
-        bookService.deleteBook(4);
+        bookService.deleteBook(4L);
         assertThat(bookService.getAllBooks()).doesNotContain(wrongBook);
     }
 }
