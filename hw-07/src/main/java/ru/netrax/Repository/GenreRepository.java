@@ -1,6 +1,6 @@
-package netrax.Repository;
+package ru.netrax.Repository;
 
-import netrax.Model.Genre;
+import ru.netrax.Model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

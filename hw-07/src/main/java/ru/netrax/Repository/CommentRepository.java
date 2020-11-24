@@ -1,6 +1,6 @@
-package netrax.Repository;
+package ru.netrax.Repository;
 
-import netrax.Model.Comment;
+import ru.netrax.Model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {

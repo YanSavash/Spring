@@ -1,16 +1,16 @@
-package netrax.Model;
+package ru.netrax.Model;
 
-import netrax.Repository.AuthorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import ru.netrax.Repository.AuthorRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@DisplayName("Тестирование класса AuthorDaoImpl")
+@DisplayName("Тестирование класса AuthorRepositoryJpaImpl")
 public class AuthorRepositoryJpaImplTest {
 
     @Autowired

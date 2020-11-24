@@ -1,4 +1,4 @@
-package netrax.Model;
+package ru.netrax.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,15 @@ public class Comment {
     @Column(name = "comment")
     private String comment;
 
-    @ManyToOne(targetEntity = Book.class, cascade = {CascadeType.MERGE,CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
     private Book book;
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
 }

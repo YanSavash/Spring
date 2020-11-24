@@ -1,4 +1,4 @@
-package netrax.Model;
+package ru.netrax.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

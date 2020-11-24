@@ -12,7 +12,7 @@ import ru.netrax.Dao.StudentDao;
 import ru.netrax.Service.IOService;
 import ru.netrax.Service.QuestionnaireServiceImpl;
 
-@ComponentScan(basePackages = "ru.netrax")
+@ComponentScan(basePackages = "ru.ru.netrax")
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AppConfig {
