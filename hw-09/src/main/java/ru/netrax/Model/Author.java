@@ -22,4 +22,9 @@ public class Author {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
