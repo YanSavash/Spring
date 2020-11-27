@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all books</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .bookDtoList, .bookDtoList td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Book Store:</h1>
+
+<table class="bookDtoList">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>GENRE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${bookList}">
+        <td th:text="${book.id}">Id</td>
+        <td th:text="${book.title}">Title</td>
+        <td th:text="${book.author}">Author</td>
+        <td th:text="${book.genre}">Genre</td>
+        <td>
+            <a th:href="@{/bookstore/edit(id=${book.id})}" href="edit.html" class="btn btn-light">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/bookstore/createAuthor(id=${book.id})}" href="editAuthor.html" class="btn btn-light">Add author</a>
+        </td>
+        <td>
+            <a th:href="@{/bookstore/createGenre(id=${book.id})}" href="editGenre.html" class="btn btn-light">Add genre</a>
+        </td>
+        <td>
+            <form th:action="@{/bookstore/delete(id=${book.id})}" method="post">
+                <input type="hidden" name=bookDtoId th:value="${book.id}"/>
+                <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <a th:href="@{/bookstore/bookById(id=${book.id})}" href="single.html" class="btn btn-light">Get book</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a href="#" th:href="@{/bookstore/create}" class="btn btn-primary">Add new book</a>
+</div>
+</body>
+</html>
