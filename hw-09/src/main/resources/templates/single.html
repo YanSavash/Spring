@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>One book from store</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .bookDto, .bookDto td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Book</h1>
+
+<table class="book">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>GENRE</th>
+        <th>COMMENTLIST</th>
+    </tr>
+    </thead>
+    <tbody>
+        <td th:text="${book.id}">Id</td>
+        <td th:text="${book.title}">Title</td>
+        <td th:text="${book.author}">Author</td>
+        <td th:text="${book.genre}">Genre</td>
+        <td>
+            <ul>
+                <li th:each="comment : ${book.commentList}">
+                    <span th:text="${comment.comment}">Comment</span>
+                </li>
+            </ul>
+        </td>
+    </tbody>
+</table>
+<div>
+    <a href="#" th:href="@{/bookstore/book}" class="btn btn-primary">Return to book store</a>
+</div>
+</body>
+</html>
