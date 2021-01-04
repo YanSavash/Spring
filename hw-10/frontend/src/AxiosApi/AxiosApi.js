@@ -18,26 +18,18 @@ export const AxiosApi = {
     },
 
     addBook(title, firstName, lastName, genreTitle) {
-        console.log(title, firstName, lastName, genreTitle)
         var bodyFormData = new FormData();
         bodyFormData.set('title', title);
         bodyFormData.set('firstName', firstName);
         bodyFormData.set('lastName', lastName);
         bodyFormData.set('genreTitle', genreTitle);
-        console.log(bodyFormData)
         try {
             return axios.post("http://localhost:8080/bookstore/add", bodyFormData
-            // {
-            //     params:{
-            //         title: title, firstName: firstName, lastName: lastName, genreTitle: genreTitle
-            //     }
-            // }
             );
         }
         catch (e) {
             console.log(e)
         }
-
     }
 }
 
