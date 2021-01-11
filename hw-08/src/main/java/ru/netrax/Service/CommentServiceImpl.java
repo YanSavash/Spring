@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.netrax.Model.Book;
 import ru.netrax.Model.Comment;
-import ru.netrax.Repository.BookRepository;
 import ru.netrax.Repository.CommentRepository;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentMongoRepository;
-    private final BookRepository bookMongoRepository;
+    private final BookService bookMongoService;
 
     @Override
     public List<Comment> getAllComments() {
@@ -25,15 +24,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentsByBookId(String bookId) {
-        Book book = bookMongoRepository.findById(bookId).orElseThrow();
+        Book book = bookMongoService.getBook(bookId);
         return book.getCommentList();
     }
 
     @Override
-    public void insertComment(String comment) {
-        Comment comment1 = new Comment();
-        comment1.setComment(comment);
-        commentMongoRepository.save(comment1);
+    public void insertComment(String commentString, String bookId) {
+        Comment comment = new Comment();
+        comment.setComment(commentString);
+        commentMongoRepository.save(comment);
+        bookMongoService.addComment(bookId, comment);
     }
 
     @Override
@@ -44,14 +44,15 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void updateComment(String id, String comment) {
-        Comment commentRepositoryJpaById = commentMongoRepository.findById(id).orElseThrow();
-        commentRepositoryJpaById.setComment(comment);
-        commentMongoRepository.save(commentRepositoryJpaById);
+        Comment commentMongoRepositoryById = commentMongoRepository.findById(id).orElseThrow();
+        commentMongoRepositoryById.setComment(comment);
+        commentMongoRepository.save(commentMongoRepositoryById);
     }
 
     @Override
-    public void deleteComment(String id) {
+    public void deleteComment(String id, String bookId) {
         Comment comment = commentMongoRepository.findById(id).orElseThrow();
+        bookMongoService.deleteComment(id, bookId);
         commentMongoRepository.delete(comment);
     }
 }

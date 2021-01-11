@@ -63,6 +63,22 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(String id) {
+        Book book = bookMongoRepository.findById(id).orElseThrow();
+        book.getCommentList().forEach(commentMongoRepository::delete);
         bookMongoRepository.deleteById(id);
+    }
+
+    @Override
+    public void addComment(String id, Comment comment) {
+        Book book = bookMongoRepository.findById(id).orElseThrow();
+        book.getCommentList().add(comment);
+        bookMongoRepository.save(book);
+    }
+
+    @Override
+    public void deleteComment(String id, String bookId) {
+        Book book = bookMongoRepository.findById(bookId).orElseThrow();
+        book.getCommentList().removeIf(e -> e.getId().equals(id));
+        bookMongoRepository.save(book);
     }
 }

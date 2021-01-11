@@ -27,7 +27,6 @@ public class Book {
     @DBRef
     private Genre genre;
 
-    @DBRef
     private List<Comment> commentList;
 
     public Book(String id, String title, Author author, Genre genre) {

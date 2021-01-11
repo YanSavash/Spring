@@ -9,11 +9,11 @@ public interface CommentService {
 
     List<Comment> getCommentsByBookId(String bookId);
 
-    void insertComment(String comment);
+    void insertComment(String comment, String bookId);
 
     Comment getComment(String id);
 
     void updateComment(String id, String comment);
 
-    void deleteComment(String id);
+    void deleteComment(String id, String bookId);
 }

@@ -42,8 +42,9 @@ public class ApplicationShellCommands {
     }
 
     @ShellMethod(value = "Add comment", key = {"add_comment", "ac"})
-    public void createComment(@ShellOption("--comment") String comment) {
-        commentService.insertComment(comment);
+    public void createComment(@ShellOption("--comment") String comment,
+                              @ShellOption("--bookId") String bookId) {
+        commentService.insertComment(comment, bookId);
     }
 
     @ShellMethod(value = "List all genres from store", key = {"list_genres", "lg"})
@@ -127,7 +128,8 @@ public class ApplicationShellCommands {
     }
 
     @ShellMethod(value = "Delete comment by Id", key = {"delete_comment", "delc"})
-    public void deleteComment(@ShellOption("--id") String id) {
-        commentService.deleteComment(id);
+    public void deleteComment(@ShellOption("--id") String id,
+                              @ShellOption("--bookId") String bookId) {
+        commentService.deleteComment(id, bookId);
     }
 }
