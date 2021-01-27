@@ -40,7 +40,6 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author=" + author +
                 ", genre=" + genre +
-                ", commentList=" + commentList +
                 '}';
     }
 }

@@ -106,7 +106,7 @@ public class JobConfig {
         SqlPagingQueryProviderFactoryBean provider =
                 new SqlPagingQueryProviderFactoryBean();
         provider.setDataSource(dataSource);
-        provider.setSelectClause("SELECT *");
+        provider.setSelectClause("SELECT id, comment, book_id");
         provider.setFromClause("FROM comment");
         provider.setSortKeys(sortByIdAsc());
         try {
