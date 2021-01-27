@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    initialization-mode: always
+    schema: schema.sql
+    data: data.sql
+    platform: org.hibernate.dialect.H2Dialect
+    driverClassName: org.h2.Driver
+    password:
+
+  data:
+    mongodb:
+      database: library
+      host: localhost
+      port: 27017
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  batch:
+    job:
+      enabled: false
+    initialize-schema: always
+
+    shell:
+      interactive:
+        enabled: false
