@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    initialization-mode: always
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+    platform: org.hibernate.dialect.PostgreSQL10Dialect
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    generate-ddl: true
