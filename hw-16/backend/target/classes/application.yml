@@ -22,6 +22,7 @@ spring:
   data:
     rest:
       base-path: /datarest
+
 management:
   endpoints:
     web:
@@ -37,7 +38,6 @@ management:
       enabled: true
     diskspace:
       enabled: true
-
-  logging:
-    file:
-      name: logfile.txt
+logging:
+  file:
+    name: logfile.txt
