@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create genre</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Genre add -->
+<form id="edit-form" th:action="@{/bookstore/addGenre(id=${id})}"
+      th:method="post" action="createGenre.html">
+    <h1>Add genre:</h1>
+
+    <div class="row">
+        <label for="holder-input">Title:</label>
+        <input id="holder-input" name="title" type="text"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Create</button>
+    </div>
+</form>
+
+</body>
+</html>
