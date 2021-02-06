@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Error</title>
+</head>
+<body>
+<div class="container">
+    <h2>Внимание, ошибка!</h2>
+    <div>Описание ошибки:</div>
+    <div th:text="${message}">Message</div>
+</div>
+
+</body>
+</html>
