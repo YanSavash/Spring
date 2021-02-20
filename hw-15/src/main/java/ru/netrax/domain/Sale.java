@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Data
 public class Sale {
-    Map<String, List<String>> orderList = new HashMap<>();
+    private Map<String, List<String>> orderList = new HashMap<>();
 
     public Sale(String name, List<String> orderList) {
         this.orderList.put(name, orderList);
